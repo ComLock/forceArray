@@ -24,10 +24,11 @@ const node = {
 
 
 const enonic = {
-  objectArray: {
-    singleArray: 'single',
+  objectArray: { // objectArray has become object
+		// emptyArray don't exist
+    singleArray: 'single', // singleArray has become string
     pair: ['first', 'second'],
-    matrix: ['a', 'b'] // Guessing untested
+    matrix: ['a', 'b'] // Matrix has become Array. (Guessing untested)
   }
 };
 
