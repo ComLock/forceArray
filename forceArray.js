@@ -15,9 +15,9 @@ const node = {
   objectArray: [{
     emptyArray: [],
     singleArray: ['single'],
-    pair: ['a', 'b'],
+    pair: ['first', 'second'],
     matrix: [
-      ['00', '01'],
+      ['a', 'b'],
     ]
   }]
 };
@@ -26,8 +26,8 @@ const node = {
 const enonic = {
   objectArray: {
     singleArray: 'single',
-    pair: ['a', 'b'],
-    matrix: ['00', '01'] // Guessing untested
+    pair: ['first', 'second'],
+    matrix: ['a', 'b'] // Guessing untested
   }
 };
 
@@ -38,12 +38,14 @@ function testEnonic() {
 		: [];
   const singleArray = forceArray(forceArray(enonic.objectArray)[0].singleArray);
 	const pair = forceArray(forceArray(enonic.objectArray)[0].pair);
+	const first = forceArray(forceArray(enonic.objectArray)[0].pair)[0];
+	const second = forceArray(forceArray(enonic.objectArray)[0].pair)[1];
 	const matrix = Array.isArray(
 		forceArray(enonic.objectArray)[0].matrix[0]
 	)
 		? forceArray(enonic.objectArray)[0].matrix
 		: forceArray(forceArray(enonic.objectArray)[0].matrix); // Force Array Fails!
-	console.log({emptyArray, singleArray, pair, matrix});
+	console.log({emptyArray, singleArray, pair, matrix, first, second});
 }
 
 
@@ -51,14 +53,24 @@ function testVanilla() {
   const emptyArray = node.objectArray[0].emptyArray;
   const singleArray = node.objectArray[0].singleArray;
 	const pair = node.objectArray[0].pair;
+	const first = node.objectArray[0].pair[0];
+	const second = node.objectArray[0].pair[1];
 	const matrix = node.objectArray[0].matrix;
-  console.log({emptyArray, singleArray, pair, matrix});
+  console.log({emptyArray, singleArray, pair, matrix, first, second});
 }
 
 
 function testNode() {
-  const [{emptyArray, singleArray, pair, matrix}] = node.objectArray;
-  console.log({emptyArray, singleArray, pair, matrix});
+  const [{
+		emptyArray,
+		singleArray,
+		pair,
+		pair: [first, second],
+		matrix,
+		matrix: [row],
+		matrix: [[a,b]]
+	}] = node.objectArray;
+  console.log({emptyArray, singleArray, pair, matrix, first, second, row, a, b});
 }
 
 
